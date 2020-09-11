@@ -19,6 +19,7 @@ class IplModel
     }
 
 public:
+    IplModel() {}
     vector<Batsman> load_batsmen_data(string);
     vector<Batsman> sort_by_batting_average(vector<Batsman>);
 };
