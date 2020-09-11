@@ -1,36 +1,79 @@
-#pragma once
-#include "TotalRunsFoursAndSixes.cpp"
-#include "HunderedsAndFifties.cpp"
-#include "AverageAndStrikeRate.cpp"
-
 class BattingStats
 {
-    TotalRunsFoursAndSixes total_runs_fours_and_sixes;
-    HunderedsAndFifties hundereds_and_fifties;
-    AverageAndStrikeRate average_and_strike_rate;
+
+    int total_runs, fours, sixes, hundereds, fifties;
+    double average, strike_rate;
 
 public:
     BattingStats() {}
 
-    BattingStats(TotalRunsFoursAndSixes total_runs_fours_and_sixes, HunderedsAndFifties hundereds_and_fifties, AverageAndStrikeRate average_and_strike_rate)
+    BattingStats set_total_runs(int total_runs)
     {
-        this->total_runs_fours_and_sixes = total_runs_fours_and_sixes;
-        this->hundereds_and_fifties = hundereds_and_fifties;
-        this->average_and_strike_rate = average_and_strike_rate;
+        this->total_runs = total_runs;
     }
 
-    TotalRunsFoursAndSixes get_total_runs_fours_and_sixes()
+    BattingStats set_fours(int fours)
     {
-        return total_runs_fours_and_sixes;
+        this->fours = fours;
     }
 
-    HunderedsAndFifties get_hundereds_and_fifties()
+    BattingStats set_sixes(int sixes)
     {
-        return hundereds_and_fifties;
+        this->sixes = sixes;
     }
 
-    AverageAndStrikeRate get_average_and_strike_rate()
+    BattingStats set_hundereds(int hundereds)
     {
-        return average_and_strike_rate;
+        this->hundereds = hundereds;
+    }
+
+    BattingStats set_fifties(int fifties)
+    {
+        this->fifties = fifties;
+    }
+
+    BattingStats set_average(double average)
+    {
+        this->average = average;
+    }
+
+    BattingStats set_strike_rate(double strike_rate)
+    {
+        this->strike_rate = strike_rate;
+    }
+
+    int get_total_runs()
+    {
+        return total_runs;
+    }
+
+    int get_fours()
+    {
+        return fours;
+    }
+
+    int get_sixes()
+    {
+        return sixes;
+    }
+
+    int get_hundereds()
+    {
+        return hundereds;
+    }
+
+    int get_fifties()
+    {
+        return fifties;
+    }
+
+    int get_average()
+    {
+        return average;
+    }
+
+    int strike_rate()
+    {
+        return strike_rate;
     }
 };
