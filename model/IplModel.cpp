@@ -108,7 +108,7 @@ vector<Bowler> IplModel::load_bowler_data(string file_path)
         BowlingStats current_bowler_stats;
         current_bowler_stats.average = stod(bowler_csv_data.at(player_count).at(8));
         current_bowler_stats.strike_rate = stod(bowler_csv_data.at(player_count).at(10));
-        current_bowler_stats.economy = stod(bowler_csv_data.at(player_count).at(9))
+        current_bowler_stats.economy = stod(bowler_csv_data.at(player_count).at(9));
 
         string bowler_name = bowler_csv_data.at(player_count).at(1);
 

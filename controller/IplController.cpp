@@ -55,6 +55,9 @@ public:
 
         bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Strike_Rate);
         ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Strike_Rate);
+
+        bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Economy);
+        ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Economy);
     }
 };
 
