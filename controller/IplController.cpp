@@ -33,6 +33,9 @@ public:
 
         batsmen_data = ipl_model.sort_batsmen_data(batsmen_data,ipl_model.Batting_Average_And_Strike_Rate);
         ipl_view.display_batsman_data(batsmen_data.at(0),ipl_model.Batting_Average_And_Strike_Rate);
+
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data,ipl_model.Most_Runs_With_Best_Average);
+        ipl_view.display_batsman_data(batsmen_data.at(0),ipl_model.Most_Runs_With_Best_Average);
     }
 };
 

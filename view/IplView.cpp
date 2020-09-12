@@ -43,6 +43,12 @@ void IplView::display_batsman_data(Batsman batsman, IplModel::SortingParameter s
              << "\n**NAME: " << batsman.get_name()
              << "**\t\t**AVERAGE: " << batsman.get_batting_stats()->get_average()
              << "**\t\t**STRIKE RATE: " << batsman.get_batting_stats()->get_strike_rate() << "**" << endl;
-        break;    
+        break;
+    case IplModel::Most_Runs_With_Best_Average:
+        cout << "\nBATSMAN WITH MOST RUNS AND MAXIMUM AVERAGE"
+             << "\n**NAME: " << batsman.get_name()
+             << "**\t\t**AVERAGE: " << batsman.get_batting_stats()->get_average()
+             << "**\t\t**TOTAL RUNS: " << batsman.get_batting_stats()->get_total_runs() << "**" << endl;
+        break;
     }
 }

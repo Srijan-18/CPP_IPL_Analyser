@@ -20,7 +20,8 @@ public:
         Batting_Strike_Rate,
         Sixes_And_Fours,
         Strike_Rate_With_Sixes_And_Fours,
-        Batting_Average_And_Strike_Rate
+        Batting_Average_And_Strike_Rate,
+        Most_Runs_With_Best_Average
     };
 
     IplModel() {}
@@ -80,6 +81,12 @@ vector<Batsman> IplModel::sort_batsmen_data(vector<Batsman> batsmen_data, Sortin
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return ((first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average()) &&
                     (first_batsman.get_batting_stats()->get_strike_rate() > second_batsman.get_batting_stats()->get_strike_rate()));
+        });
+        break;
+    case Most_Runs_With_Best_Average:
+        sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
+            return ((first_batsman.get_batting_stats()->get_total_runs() > second_batsman.get_batting_stats()->get_total_runs()) &&
+                    (first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average()));
         });
         break;
     }
