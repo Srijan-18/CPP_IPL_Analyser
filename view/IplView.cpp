@@ -8,12 +8,24 @@ class IplView
 {
 public:
     IplView() {}
-    void display_batsman_with_best_batting_average(Batsman);
+    void display_batsman_data(Batsman, IplModel::SortingParameter);
 };
 
-void IplView::display_batsman_with_best_batting_average(Batsman batsman)
+void IplView::display_batsman_data(Batsman batsman, IplModel::SortingParameter sorting_parameter)
 {
-    cout << "\nBATSMAN WITH BEST BATTING AVERAGE\n"
-         << "\n** NAME: " << batsman.get_name()
-         << "**\t\t** AVERAGE: " << batsman.get_batting_stats()->get_average() << " **" << endl;
+    switch (sorting_parameter)
+    {
+    case IplModel::Batting_Average:
+        cout << "\nBATSMAN WITH BEST BATTING AVERAGE\n"
+             << "\n** NAME: " << batsman.get_name()
+             << "**\t\t** AVERAGE: " << batsman.get_batting_stats()->get_average() << " **" << endl;
+        break;
+    case IplModel::Batting_Strike_Rate:
+        cout << "\nBATSMAN WITH BEST BATTING STRIKE RATE\n"
+             << "\n** NAME: " << batsman.get_name()
+             << "**\t\t** STRIKE RATE: " << batsman.get_batting_stats()->get_strike_rate() << " **" << endl;
+        break;
+    default:
+        break;
+    }
 }

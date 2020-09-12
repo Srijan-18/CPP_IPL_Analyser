@@ -14,9 +14,15 @@ class IplModel
     }
 
 public:
+    enum SortingParameter
+    {
+        Batting_Average = 1,
+        Batting_Strike_Rate
+    };
+
     IplModel() {}
     vector<Batsman> load_batsmen_data(string);
-    vector<Batsman> sort_by_batting_average(vector<Batsman>);
+    vector<Batsman> sort_batsmen_data(vector<Batsman>, SortingParameter);
 };
 
 vector<Batsman> IplModel::load_batsmen_data(string file_path)
@@ -42,11 +48,19 @@ vector<Batsman> IplModel::load_batsmen_data(string file_path)
     return batsmen_data;
 }
 
-vector<Batsman> IplModel::sort_by_batting_average(vector<Batsman> batsmen_data)
+vector<Batsman> IplModel::sort_batsmen_data(vector<Batsman> batsmen_data, SortingParameter sorting_parameter)
 {
-    sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman& first_batsman, Batsman& second_batsman) -> bool {
-        return first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average();
-    });
-
+    switch (sorting_parameter)
+    {
+    case Batting_Average:
+        sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
+            return first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average();
+        });
+        break;
+    case Batting_Strike_Rate:
+        sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
+            return first_batsman.get_batting_stats()->get_strike_rate() > second_batsman.get_batting_stats()->get_strike_rate();
+        });
+    }
     return batsmen_data;
 }
