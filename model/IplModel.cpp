@@ -24,7 +24,8 @@ public:
         Batting_Average_And_Strike_Rate,
         Most_Runs_With_Best_Average,
         Bowling_Average,
-        Bowling_Strike_Rate
+        Bowling_Strike_Rate,
+        Bowling_Economy
     };
 
     IplModel() {}
@@ -134,6 +135,14 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
             if (first_bowler.get_bowling_stats()->strike_rate != 0 || second_bowler.get_bowling_stats()->strike_rate != 0)
                 return false;
             return first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;
+        });
+        break;
+
+        case Bowling_Economy:
+        sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
+            if (first_bowler.get_bowling_stats()->economy != 0 || second_bowler.get_bowling_stats()->economy != 0)
+                return false;
+            return first_bowler.get_bowling_stats()->economy < second_bowler.get_bowling_stats()->economy;
         });
         break;
     }
