@@ -68,5 +68,10 @@ void IplView::display_bowler_data(Bowler bowler, IplModel::SortingParameter sort
              << "\n**NAME: " << bowler.get_name()
              << "**\t\t**STRIKE_RATE: " << bowler.get_bowling_stats()->strike_rate << "**" << endl;
         break;
+    case IplModel::Bowling_Economy:
+        cout << "\nBOWLER WITH BEST BOWLING STRIKE RATE"
+             << "\n**NAME: " << bowler.get_name()
+             << "**\t\t**ECONOMY: " << bowler.get_bowling_stats()->economy << "**" << endl;
+        break;
     }
 }
