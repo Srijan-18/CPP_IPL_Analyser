@@ -38,5 +38,11 @@ void IplView::display_batsman_data(Batsman batsman, IplModel::SortingParameter s
              << "**\t\t**SIXES: " << batsman.get_batting_stats()->get_sixes()
              << "**\t\t**FOURS: " << batsman.get_batting_stats()->get_fours() << "**" << endl;
         break;
+    case IplModel::Batting_Average_And_Strike_Rate:
+        cout << "\nBATSMAN WITH BEST BATTING AVERAGE AND STRIKE RATE"
+             << "\n**NAME: " << batsman.get_name()
+             << "**\t\t**AVERAGE: " << batsman.get_batting_stats()->get_average()
+             << "**\t\t**STRIKE RATE: " << batsman.get_batting_stats()->get_strike_rate() << "**" << endl;
+        break;    
     }
 }

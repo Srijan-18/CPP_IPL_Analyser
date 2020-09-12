@@ -19,7 +19,8 @@ public:
         Batting_Average = 1,
         Batting_Strike_Rate,
         Sixes_And_Fours,
-        Strike_Rate_With_Sixes_And_Fours
+        Strike_Rate_With_Sixes_And_Fours,
+        Batting_Average_And_Strike_Rate
     };
 
     IplModel() {}
@@ -68,10 +69,17 @@ vector<Batsman> IplModel::sort_batsmen_data(vector<Batsman> batsmen_data, Sortin
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return ((first_batsman.get_batting_stats()->get_fours() + first_batsman.get_batting_stats()->get_sixes()) > (second_batsman.get_batting_stats()->get_fours() + second_batsman.get_batting_stats()->get_sixes()));
         });
+        break;
     case Strike_Rate_With_Sixes_And_Fours:
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return first_batsman.get_batting_stats()->get_strike_rate() > second_batsman.get_batting_stats()->get_strike_rate() &&
                    ((first_batsman.get_batting_stats()->get_fours() + first_batsman.get_batting_stats()->get_sixes()) > (second_batsman.get_batting_stats()->get_fours() + second_batsman.get_batting_stats()->get_sixes()));
+        });
+        break;
+    case Batting_Average_And_Strike_Rate:
+        sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
+            return ((first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average()) &&
+                    (first_batsman.get_batting_stats()->get_strike_rate() > second_batsman.get_batting_stats()->get_strike_rate()));
         });
         break;
     }
