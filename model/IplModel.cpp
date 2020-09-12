@@ -25,7 +25,8 @@ public:
         Most_Runs_With_Best_Average,
         Bowling_Average,
         Bowling_Strike_Rate,
-        Bowling_Economy
+        Bowling_Economy,
+        Bowling_Strike_Rate_5W_4W
     };
 
     IplModel() {}
@@ -133,19 +134,28 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
         break;
     case Bowling_Strike_Rate:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
-            if (first_bowler.get_bowling_stats()->strike_rate != 0 || second_bowler.get_bowling_stats()->strike_rate != 0)
+            if (first_bowler.get_bowling_stats()->strike_rate == 0 || second_bowler.get_bowling_stats()->strike_rate == 0)
                 return false;
             return first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;
         });
         break;
-
-        case Bowling_Economy:
+    case Bowling_Economy:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
-            if (first_bowler.get_bowling_stats()->economy != 0 || second_bowler.get_bowling_stats()->economy != 0)
+            if (first_bowler.get_bowling_stats()->economy == 0 || second_bowler.get_bowling_stats()->economy == 0)
                 return false;
             return first_bowler.get_bowling_stats()->economy < second_bowler.get_bowling_stats()->economy;
         });
         break;
+        case Bowling_Strike_Rate_5W_4W:
+            sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
+                if (first_bowler.get_bowling_stats()->five_wicket_hauls != 0)
+                 return (first_bowler.get_bowling_stats()->five_wicket_hauls > second_bowler.get_bowling_stats()->five_wicket_hauls);
+                else if (first_bowler.get_bowling_stats()->five_wicket_hauls == 0 && first_bowler.get_bowling_stats()->four_wicket_hauls != 0)
+                  return (first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate) && (first_bowler.get_bowling_stats()->four_wicket_hauls > second_bowler.get_bowling_stats()->four_wicket_hauls);
+                else if (first_bowler.get_bowling_stats()->strike_rate == 0 || second_bowler.get_bowling_stats()->strike_rate == 0)
+                return false;
+            return first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;   
+            });
     }
     return bowler_data;
 }

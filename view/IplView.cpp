@@ -66,12 +66,20 @@ void IplView::display_bowler_data(Bowler bowler, IplModel::SortingParameter sort
     case IplModel::Bowling_Strike_Rate:
         cout << "\nBOWLER WITH BEST BOWLING STRIKE RATE"
              << "\nNAME: " << bowler.get_name()
-             << "\t\tSTRIKE_RATE: " << bowler.get_bowling_stats()->strike_rate << endl;
+             << "\t\tSTRIKE RATE: " << bowler.get_bowling_stats()->strike_rate << endl;
         break;
     case IplModel::Bowling_Economy:
         cout << "\nBOWLER WITH BEST BOWLING STRIKE RATE"
              << "\nNAME: " << bowler.get_name()
              << "\t\tECONOMY: " << bowler.get_bowling_stats()->economy << endl;
+        break;
+    case IplModel::Bowling_Strike_Rate_5W_4W:
+        cout << "\nBOWLER WITH BEST BOWLING STRIKE RATE WITH 5W AND 4W"
+             << "\nNAME: " << bowler.get_name()
+             << "\t\tSTRIKE_RATE: " << bowler.get_bowling_stats()->strike_rate 
+             << "\t\tFIVE WICKET HAULS: " << bowler.get_bowling_stats()->five_wicket_hauls
+             << "\t\tFOUR WICKET HAULS: " << bowler.get_bowling_stats()->four_wicket_hauls
+             << endl;
         break;
     }
 }

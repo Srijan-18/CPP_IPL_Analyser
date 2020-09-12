@@ -50,6 +50,7 @@ public:
     void display_bolwling_data(IplModel ipl_model, IplView ipl_view, string bowling_stats_file_path)
     {
         vector<Bowler> bowler_data = ipl_model.load_bowler_data(bowling_stats_file_path);
+
         bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Average);
         ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Average);
 
@@ -58,6 +59,9 @@ public:
 
         bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Economy);
         ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Economy);
+
+        bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Strike_Rate_5W_4W);
+        ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Strike_Rate_5W_4W);
     }
 };
 
