@@ -13,11 +13,6 @@ class IplModel
         return csv_operation.read_file(file_path);
     }
 
-    // bool sort_by_average(Batsman& first_batsman, Batsman& second_batsman)
-    // {
-    //     return first_batsman.get_batting_stats().get_average() < second_batsman.get_batting_stats().get_average();
-    // }
-
 public:
     IplModel() {}
     vector<Batsman> load_batsmen_data(string);
