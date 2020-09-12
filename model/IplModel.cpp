@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "../libraries/csvFileReader.cpp"
 #include "Batsman.cpp"
+#include "Bowler.cpp"
 
 class IplModel
 {
@@ -21,12 +22,14 @@ public:
         Sixes_And_Fours,
         Strike_Rate_With_Sixes_And_Fours,
         Batting_Average_And_Strike_Rate,
-        Most_Runs_With_Best_Average
+        Most_Runs_With_Best_Average,
     };
 
     IplModel() {}
     vector<Batsman> load_batsmen_data(string);
     vector<Batsman> sort_batsmen_data(vector<Batsman>, SortingParameter);
+    vector<Bowler> load_bowler_data(string);
+    vector<Bowler> sort_bowler_data(vector<Bowler>);
 };
 
 vector<Batsman> IplModel::load_batsmen_data(string file_path)
@@ -91,4 +94,33 @@ vector<Batsman> IplModel::sort_batsmen_data(vector<Batsman> batsmen_data, Sortin
         break;
     }
     return batsmen_data;
+}
+
+vector<Bowler> IplModel::load_bowler_data(string file_path)
+{
+    vector<vector<string>> bowler_csv_data = read_data(file_path);
+    vector<Bowler> bowler_data;
+    for (int player_count = 0; player_count < bowler_csv_data.size(); player_count++)
+    {
+        BowlingStats current_bowler_stats;
+        current_bowler_stats.average = stod(bowler_csv_data.at(player_count).at(8));
+
+        string bowler_name = bowler_csv_data.at(player_count).at(1);
+
+        Bowler bowler(bowler_name, current_bowler_stats);
+        bowler_data.push_back(bowler);
+    }
+
+    return bowler_data;
+}
+
+vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data)
+{
+    sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
+        if (first_bowler.get_bowling_stats()->average != 0 || second_bowler.get_bowling_stats()->average != 0)
+            return false;
+        return first_bowler.get_bowling_stats()->average < second_bowler.get_bowling_stats()->average;
+    });
+
+    return bowler_data;
 }

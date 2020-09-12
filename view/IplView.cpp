@@ -9,6 +9,7 @@ class IplView
 public:
     IplView() {}
     void display_batsman_data(Batsman, IplModel::SortingParameter);
+    void display_bowler_data(Bowler);
 };
 
 void IplView::display_batsman_data(Batsman batsman, IplModel::SortingParameter sorting_parameter)
@@ -51,4 +52,11 @@ void IplView::display_batsman_data(Batsman batsman, IplModel::SortingParameter s
              << "**\t\t**TOTAL RUNS: " << batsman.get_batting_stats()->get_total_runs() << "**" << endl;
         break;
     }
+}
+
+void IplView::display_bowler_data(Bowler bowler)
+{
+     cout << "\nBOWLER WITH BEST BOWLING AVERAGE"
+             << "\n**NAME: " << bowler.get_name()
+             << "**\t\t**AVERAGE: " << bowler.get_bowling_stats()->average << "**" << endl;
 }
