@@ -23,13 +23,15 @@ public:
         Strike_Rate_With_Sixes_And_Fours,
         Batting_Average_And_Strike_Rate,
         Most_Runs_With_Best_Average,
+        Bowling_Average,
+        Bowling_Strike_Rate
     };
 
     IplModel() {}
     vector<Batsman> load_batsmen_data(string);
     vector<Batsman> sort_batsmen_data(vector<Batsman>, SortingParameter);
     vector<Bowler> load_bowler_data(string);
-    vector<Bowler> sort_bowler_data(vector<Bowler>);
+    vector<Bowler> sort_bowler_data(vector<Bowler>, SortingParameter);
 };
 
 vector<Batsman> IplModel::load_batsmen_data(string file_path)
@@ -104,6 +106,7 @@ vector<Bowler> IplModel::load_bowler_data(string file_path)
     {
         BowlingStats current_bowler_stats;
         current_bowler_stats.average = stod(bowler_csv_data.at(player_count).at(8));
+        current_bowler_stats.strike_rate = stod(bowler_csv_data.at(player_count).at(10));
 
         string bowler_name = bowler_csv_data.at(player_count).at(1);
 
@@ -114,13 +117,24 @@ vector<Bowler> IplModel::load_bowler_data(string file_path)
     return bowler_data;
 }
 
-vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data)
+vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingParameter sorting_parameter)
 {
-    sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
-        if (first_bowler.get_bowling_stats()->average != 0 || second_bowler.get_bowling_stats()->average != 0)
-            return false;
-        return first_bowler.get_bowling_stats()->average < second_bowler.get_bowling_stats()->average;
-    });
-
+    switch (sorting_parameter)
+    {
+    case Bowling_Average:
+        sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
+            if (first_bowler.get_bowling_stats()->average != 0 || second_bowler.get_bowling_stats()->average != 0)
+                return false;
+            return first_bowler.get_bowling_stats()->average < second_bowler.get_bowling_stats()->average;
+        });
+        break;
+    case Bowling_Strike_Rate:
+        sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
+            if (first_bowler.get_bowling_stats()->strike_rate != 0 || second_bowler.get_bowling_stats()->strike_rate != 0)
+                return false;
+            return first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;
+        });
+        break;
+    }
     return bowler_data;
 }
