@@ -21,8 +21,8 @@ public:
         return name;
     }
 
-    BattingStats get_batting_stats()
+    BattingStats* get_batting_stats()
     {
-        return battingStats;
+        return &battingStats;
     }
 };
