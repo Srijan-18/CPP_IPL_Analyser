@@ -27,6 +27,9 @@ public:
 
         batsmen_data = ipl_model.sort_batsmen_data(batsmen_data,ipl_model.Sixes_And_Fours);
         ipl_view.display_batsman_data(batsmen_data.at(0),ipl_model.Sixes_And_Fours);
+
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data,ipl_model.Strike_Rate_With_Sixes_And_Fours);
+        ipl_view.display_batsman_data(batsmen_data.at(0),ipl_model.Strike_Rate_With_Sixes_And_Fours);
     }
 };
 
