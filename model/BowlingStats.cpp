@@ -6,4 +6,5 @@ public:
     double economy;
     int five_wicket_hauls;
     int four_wicket_hauls;
+    int wickets;
 };

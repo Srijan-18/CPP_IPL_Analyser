@@ -25,11 +25,12 @@ int IplView::getChoice()
     int choice;
 
     cout << "\n\t\t##  MAKE INPUT ACCORDING TO CHOICE  ##\n";
-    cout << "\n1. Find Batsman With Top Batting Average\n2. Find Batsman With Top Striking Rate\n3. Find Batsman With Max 6(s) And 4(s)"
-         << "\n4. Find Batsman With Best Strike Rate With Sixes And Fours\n5. Find Batsman With Great Average With Best Strike"
-         << "\n6. Find Batsman With Maximum Runs With Best Averages"
-         << "\n7. Find Bowler With Top Bowling Average\n8. Find Bowler With Top Strike Rate"
-         << "\n9. Find Bowler With Best Economy Rate\n10. Find Bowler With Best Strike Rate With 5W And 4W"
+    cout << "\n1.  Find Batsman With Top Batting Average\n2.  Find Batsman With Top Striking Rate\n3.  Find Batsman With Max 6(s) And 4(s)"
+         << "\n4.  Find Batsman With Best Strike Rate With Sixes And Fours\n5.  Find Batsman With Great Average With Best Strike"
+         << "\n6.  Find Batsman With Maximum Runs With Best Averages"
+         << "\n7.  Find Bowler With Top Bowling Average\n8.  Find Bowler With Top Strike Rate"
+         << "\n9.  Find Bowler With Best Economy Rate\n10. Find Bowler With Best Strike Rate With 5W And 4W"
+         << "\n11. Find Bowler With Best Average And Best Strike Rate"
          << "\nAny other to exit."
          << "\n\nYour Choice : ";
 
@@ -107,5 +108,11 @@ void IplView::display_bowler_data(Bowler bowler, SortingParameter sorting_parame
              << "\t\tFOUR WICKET HAULS: " << bowler.get_bowling_stats()->four_wicket_hauls
              << endl;
         break;
+    case SortingParameter::Bowling_Average_With_Best_Strike_Rate:
+        cout << "\nBOWLER WITH BEST BOWLING AVERAGE AND STRIKE RATE"
+             << "\nNAME: " << bowler.get_name()
+             << "\t\tBOWLING AVERAGE: " << bowler.get_bowling_stats()->average
+             << "\t\tBOWLING STRIKE RATE: " << bowler.get_bowling_stats()->strike_rate
+             << endl;
     }
 }

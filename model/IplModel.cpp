@@ -167,6 +167,16 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
             return first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;
         });
         required_bowler_data = bowler_data;
+        break;
+    case SortingParameter::Bowling_Average_With_Best_Strike_Rate:
+        sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
+            return first_bowler.get_bowling_stats()->average < second_bowler.get_bowling_stats()->average && first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;
+        });
+
+        for (int bowler_count = 0; bowler_count < bowler_data.size(); bowler_count++)
+            if (bowler_data.at(bowler_count).get_bowling_stats()->average != 0 && bowler_data.at(bowler_count).get_bowling_stats()->strike_rate != 0)
+                required_bowler_data.push_back(bowler_data.at(bowler_count));
+        break;
     }
     return required_bowler_data;
 }
