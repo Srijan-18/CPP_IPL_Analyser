@@ -31,6 +31,7 @@ int IplView::getChoice()
          << "\n7.  Find Bowler With Top Bowling Average\n8.  Find Bowler With Top Strike Rate"
          << "\n9.  Find Bowler With Best Economy Rate\n10. Find Bowler With Best Strike Rate With 5W And 4W"
          << "\n11. Find Bowler With Best Average And Best Strike Rate"
+         << "\n12. Find Bowler With Best Average And Most Wickets"
          << "\nAny other to exit."
          << "\n\nYour Choice : ";
 
@@ -114,5 +115,13 @@ void IplView::display_bowler_data(Bowler bowler, SortingParameter sorting_parame
              << "\t\tBOWLING AVERAGE: " << bowler.get_bowling_stats()->average
              << "\t\tBOWLING STRIKE RATE: " << bowler.get_bowling_stats()->strike_rate
              << endl;
+        break;
+    case SortingParameter::Bowling_Average_With_Most_Wickets:
+        cout << "\nBOWLER WITH BEST BOWLING AVERAGE AND STRIKE RATE"
+             << "\nNAME: " << bowler.get_name()
+             << "\t\tBOWLING AVERAGE: " << bowler.get_bowling_stats()->average
+             << "\t\tWICKETS: " << bowler.get_bowling_stats()->wickets
+             << endl;
+        break;
     }
 }
