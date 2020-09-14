@@ -42,51 +42,51 @@ public:
 
             switch (choice)
             {
-            case 1:
+            case SortingParameter::Batting_Average:
                 display_best_batting_average();
                 break;
-            case 2:
+            case SortingParameter::Batting_Strike_Rate:
                 display_best_batting_strike_rate();
                 break;
-            case 3:
+            case SortingParameter::Sixes_And_Fours:
                 display_most_sixes_and_fours();
                 break;
-            case 4:
+            case SortingParameter::Strike_Rate_With_Sixes_And_Fours:
                 display_best_strike_rate_with_sixes_and_fours();
                 break;
-            case 5:
+            case SortingParameter::Batting_Average_And_Strike_Rate:
                 display_best_batting_average_and_strike_rate();
                 break;
-            case 6:
+            case SortingParameter::Most_Runs_With_Best_Average:
                 display_best_average_with_most_runs();
                 break;
-            case 7:
+            case SortingParameter::Bowling_Average:
                 display_best_bowling_average();
                 break;
-            case 8:
+            case SortingParameter::Bowling_Strike_Rate:
                 display_best_bowling_strike_rate();
                 break;
-            case 9:
+            case SortingParameter::Bowling_Economy:
                 display_best_bowling_economy();
                 break;
-            case 10:
+            case SortingParameter::Bowling_Strike_Rate_5W_4W:
                 display_best_bowling_strike_rate_with_5w_4w();
                 break;
-            case 11:
+            case SortingParameter::Bowling_Average_With_Best_Strike_Rate:
                 display_best_bowling_average_with_best_strike_rate();
                 break;
-            case 12:
+            case SortingParameter::Bowling_Average_With_Most_Wickets:
                 display_best_bowling_average_with_most_wickets();
                 break;
-            case 13:
+            case SortingParameter::Batting_And_Bowling_Averages:
                 display_best_batting_and_bowling_averages();
                 break;
-            case 14:
+            case SortingParameter::Most_Runs_And_Wickets:
                 display_most_runs_and_wickets();
-            case 15:
+            case Most_Hundereds_With_Best_Average:
                 display_most_hundereds_and_best_average();
                 break;
-            case 16:
+            case Best_Average_With_Zero_Hundered_Fifty:
                 display_highest_average_with_zero_fifties_and_hundereds();    
             default:
                 repeat = false;

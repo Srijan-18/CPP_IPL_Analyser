@@ -36,6 +36,7 @@ int IplView::getChoice()
          << "\n13. Find All-Rounder With Best Batting And Bowling Averages"
          << "\n14. Find All-Rounder With Most Runs And Wickets"
          << "\n15. Find Batsman With Most Hundereds ANd Best Average."
+         << "\n16. Find Batsman With Best Average ANd Zero Hundered ANd Fifties."
          << "\nAny other to exit."
          << "\n\nYour Choice : ";
 
@@ -84,10 +85,18 @@ void IplView::display_batsman_data(Batsman batsman, SortingParameter sorting_par
              << "\t\tTOTAL RUNS: " << batsman.get_batting_stats()->get_total_runs() << endl;
         break;
     case SortingParameter::Most_Hundereds_With_Best_Average:
-        cout << "\nBATSMAN WITH MOST RUNS AND MAXIMUM AVERAGE"
+        cout << "\nBATSMAN WITH MOST HUNDEREDS AND BEST AVERAGE"
              << "\nNAME: " << batsman.get_name()
              << "\t\tAVERAGE: " << batsman.get_batting_stats()->get_average()
              << "\t\tHUNDEREDS: " << batsman.get_batting_stats()->get_hundereds() << endl;
+        break;
+        case SortingParameter::Best_Average_With_Zero_Hundered_Fifty:
+        cout << "\nBATSMAN WITH BEST AVERAGE AND ZERO HUNDERED AND FIFTY"
+             << "\nNAME: " << batsman.get_name()
+             << "\t\tAVERAGE: " << batsman.get_batting_stats()->get_average()
+             << "\t\tHUNDEREDS: " << batsman.get_batting_stats()->get_hundereds() 
+             << "\t\tFIFTIES: " << batsman.get_batting_stats()->get_fifties()
+             << endl;
         break;
     }
 }

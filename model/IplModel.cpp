@@ -94,6 +94,14 @@ vector<Batsman> IplModel::sort_batsmen_data(vector<Batsman> batsmen_data, Sortin
                     (first_batsman.get_batting_stats()->get_hundereds() >= second_batsman.get_batting_stats()->get_hundereds()));
         });
         break;
+    case SortingParameter::Best_Average_With_Zero_Hundered_Fifty:
+    {
+        vector<Batsman> required_batsmen_list;
+        for (int batsman_count = 0; batsman_count < batsmen_data.size(); batsman_count++)
+            if (batsmen_data.at(batsman_count).get_batting_stats()->get_fifties() == 0 && batsmen_data.at(batsman_count).get_batting_stats()->get_hundereds() == 0)
+                required_batsmen_list.push_back(batsmen_data.at(batsman_count));
+        return sort_batsmen_data(required_batsmen_list, SortingParameter::Batting_Average);
+    }
     }
     return batsmen_data;
 }

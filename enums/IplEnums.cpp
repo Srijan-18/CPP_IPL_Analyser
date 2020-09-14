@@ -18,6 +18,6 @@ namespace IplEnums
         Batting_And_Bowling_Averages,
         Most_Runs_And_Wickets,
         Most_Hundereds_With_Best_Average,
-        Best_Average_With_Zero_Hundereds_Fifties
+        Best_Average_With_Zero_Hundered_Fifty,
     };
 }   
