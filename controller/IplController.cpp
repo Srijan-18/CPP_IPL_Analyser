@@ -86,6 +86,8 @@ public:
             case 15:
                 display_most_hundereds_and_best_average();
                 break;
+            case 16:
+                display_highest_average_with_zero_fifties_and_hundereds();    
             default:
                 repeat = false;
             }
@@ -180,5 +182,11 @@ public:
     {
         batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, SortingParameter::Most_Hundereds_With_Best_Average);
         ipl_view.display_batsman_data(batsmen_data.at(0), SortingParameter::Most_Hundereds_With_Best_Average);
+    }
+
+    void display_highest_average_with_zero_fifties_and_hundereds()
+    {
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, SortingParameter::Best_Average_With_Zero_Hundered_Fifty);
+        ipl_view.display_batsman_data(batsmen_data.at(0), SortingParameter::Best_Average_With_Zero_Hundered_Fifty);
     }
 };
