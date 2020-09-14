@@ -5,6 +5,7 @@
 #include "../libraries/csvFileReader.cpp"
 #include "Batsman.cpp"
 #include "Bowler.cpp"
+#include "Allrounder.cpp"
 #include "../enums/IplEnums.cpp"
 
 using namespace IplEnums;
@@ -18,25 +19,13 @@ class IplModel
     }
 
 public:
-    // enum SortingParameter
-    // {
-    //     Batting_Average = 1,
-    //     Batting_Strike_Rate,
-    //     Sixes_And_Fours,
-    //     Strike_Rate_With_Sixes_And_Fours,
-    //     Batting_Average_And_Strike_Rate,
-    //     Most_Runs_With_Best_Average,
-    //     Bowling_Average,
-    //     Bowling_Strike_Rate,
-    //     Bowling_Economy,
-    //     Bowling_Strike_Rate_5W_4W
-    // };
-
     IplModel() {}
     vector<Batsman> load_batsmen_data(string);
     vector<Batsman> sort_batsmen_data(vector<Batsman>, SortingParameter);
     vector<Bowler> load_bowler_data(string);
     vector<Bowler> sort_bowler_data(vector<Bowler>, SortingParameter);
+    vector<Allrounder> load_all_rounder_data(vector<Batsman>, vector<Bowler>);
+    vector<Allrounder> sort_all_rounder_data(vector<Allrounder>, SortingParameter);
 };
 
 vector<Batsman> IplModel::load_batsmen_data(string file_path)
@@ -195,4 +184,44 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
     }
 
     return required_bowler_data;
+}
+
+vector<Allrounder> IplModel::load_all_rounder_data(vector<Batsman> batsmen, vector<Bowler> bowlers)
+{
+    vector<Allrounder> allrounders;
+    for (int batsman_count = 0; batsman_count < batsmen.size(); batsman_count++)
+    {
+        for (int bowler_count = 0; bowler_count < bowlers.size(); bowler_count++)
+        {
+            if (batsmen.at(batsman_count).get_name() == bowlers.at(bowler_count).get_name())
+            {
+                Allrounder allrounder;
+                allrounder.name = batsmen.at(batsman_count).get_name();
+                allrounder.batting_average = batsmen.at(batsman_count).get_batting_stats()->get_average();
+                allrounder.bowling_average = bowlers.at(bowler_count).get_bowling_stats()->average;
+                allrounders.push_back(allrounder);
+            }
+        }
+    }
+
+    return allrounders;
+}
+
+vector<Allrounder> IplModel::sort_all_rounder_data(vector<Allrounder> all_rounders, SortingParameter sorting_parameter)
+{
+    vector<Allrounder> required_allrounder_data;
+    switch (sorting_parameter)
+    {
+    case Batting_And_Bowling_Averages:
+        sort(all_rounders.begin(), all_rounders.end(), [](Allrounder &first_allrounder, Allrounder &second_allrounder) -> bool {
+            return first_allrounder.batting_average > second_allrounder.batting_average && first_allrounder.bowling_average < second_allrounder.bowling_average;
+        });
+
+        for (int all_rounder_count = 0; all_rounder_count < all_rounders.size(); all_rounder_count++)
+        {
+            if (all_rounders.at(all_rounder_count).batting_average != 0 && all_rounders.at(all_rounder_count).bowling_average)
+                required_allrounder_data.push_back(all_rounders.at(all_rounder_count));
+        }
+    }
+    return required_allrounder_data;
 }

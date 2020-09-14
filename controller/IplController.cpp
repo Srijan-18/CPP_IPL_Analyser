@@ -18,12 +18,13 @@ class IplController
     IplView ipl_view;
     vector<Batsman> batsmen_data;
     vector<Bowler> bowler_data;
-
+    vector<Allrounder> allrounders_data;
 public:
     IplController()
     {
         batsmen_data = ipl_model.load_batsmen_data(batting_stats_file_path);
         bowler_data = ipl_model.load_bowler_data(bowling_stats_file_path);
+        allrounders_data = ipl_model.load_all_rounder_data(batsmen_data, bowler_data);
     }
 
     void print_welcome_message()
@@ -76,6 +77,9 @@ public:
             case 12:
                 best_bowling_average_with_most_wickets();
                 break;
+            case 13:
+                best_batting_and_bowling_averages();
+                break;    
             default:
                 repeat = false;
             }
@@ -152,5 +156,11 @@ public:
     {
         bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Average_With_Most_Wickets);
         ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Average_With_Most_Wickets);
+    }
+
+    void best_batting_and_bowling_averages()
+    {
+        allrounders_data = ipl_model.sort_all_rounder_data(allrounders_data, SortingParameter::Batting_And_Bowling_Averages);
+        ipl_view.display_allrounder_data(allrounders_data.at(0), SortingParameter::Batting_And_Bowling_Averages);
     }
 };

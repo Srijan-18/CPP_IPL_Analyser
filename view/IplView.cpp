@@ -13,6 +13,7 @@ public:
     int getChoice();
     void display_batsman_data(Batsman, SortingParameter);
     void display_bowler_data(Bowler, SortingParameter);
+    void display_allrounder_data(Allrounder, SortingParameter);
 };
 
 void IplView::display_welcome_message()
@@ -32,6 +33,7 @@ int IplView::getChoice()
          << "\n9.  Find Bowler With Best Economy Rate\n10. Find Bowler With Best Strike Rate With 5W And 4W"
          << "\n11. Find Bowler With Best Average And Best Strike Rate"
          << "\n12. Find Bowler With Best Average And Most Wickets"
+         << "\n13. Find All Rounder With Best Batting And Bowling Averages"
          << "\nAny other to exit."
          << "\n\nYour Choice : ";
 
@@ -124,4 +126,18 @@ void IplView::display_bowler_data(Bowler bowler, SortingParameter sorting_parame
              << endl;
         break;
     }
+}
+
+void IplView::display_allrounder_data(Allrounder allrounder, SortingParameter sortingParameter)
+{
+    switch(sortingParameter)
+    {
+        case Batting_And_Bowling_Averages:
+            cout << "\nALLROUNDER WITH BEST BOWLING AND BATTING AVERAGES"
+            << "\nNAME: " << allrounder.name
+            << "\t\tBATTING AVERAGE: " << allrounder.batting_average
+            << "\t\tBOWLING AVERAGE: " << allrounder.bowling_average
+            << endl;
+    }
+
 }
