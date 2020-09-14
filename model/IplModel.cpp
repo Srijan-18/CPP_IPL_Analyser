@@ -88,6 +88,12 @@ vector<Batsman> IplModel::sort_batsmen_data(vector<Batsman> batsmen_data, Sortin
                     (first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average()));
         });
         break;
+    case SortingParameter::Most_Hundereds_With_Best_Average:
+        sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
+            return ((first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average()) &&
+                    (first_batsman.get_batting_stats()->get_hundereds() >= second_batsman.get_batting_stats()->get_hundereds()));
+        });
+        break;
     }
     return batsmen_data;
 }
@@ -232,6 +238,6 @@ vector<Allrounder> IplModel::sort_all_rounder_data(vector<Allrounder> all_rounde
         });
         required_allrounder_data = all_rounders;
     }
-    
+
     return required_allrounder_data;
 }

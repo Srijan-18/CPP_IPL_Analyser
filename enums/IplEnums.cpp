@@ -16,6 +16,8 @@ namespace IplEnums
         Bowling_Average_With_Best_Strike_Rate,
         Bowling_Average_With_Most_Wickets,
         Batting_And_Bowling_Averages,
-        Most_Runs_And_Wickets
+        Most_Runs_And_Wickets,
+        Most_Hundereds_With_Best_Average,
+        Best_Average_With_Zero_Hundereds_Fifties
     };
 }   
