@@ -1,6 +1,10 @@
+#pragma once
 #include <iostream>
 #include "../model/IPlModel.cpp"
 #include "../view/IPlView.cpp"
+#include "../enums/IplEnums.cpp"
+
+using namespace IplEnums;
 
 using namespace std;
 
@@ -74,61 +78,61 @@ public:
 
     void display_best_batting_average()
     {
-        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, ipl_model.Batting_Average);
-        ipl_view.display_batsman_data(batsmen_data.at(0), ipl_model.Batting_Average);
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, SortingParameter::Batting_Average);
+        ipl_view.display_batsman_data(batsmen_data.at(0), SortingParameter::Batting_Average);
     }
 
     void display_best_batting_strike_rate()
     {
-        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, ipl_model.Batting_Strike_Rate);
-        ipl_view.display_batsman_data(batsmen_data.at(0), ipl_model.Batting_Strike_Rate);
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, SortingParameter::Batting_Strike_Rate);
+        ipl_view.display_batsman_data(batsmen_data.at(0), SortingParameter::Batting_Strike_Rate);
     }
 
     void display_most_sixes_and_fours()
     {
-        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, ipl_model.Sixes_And_Fours);
-        ipl_view.display_batsman_data(batsmen_data.at(0), ipl_model.Sixes_And_Fours);
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, SortingParameter::Sixes_And_Fours);
+        ipl_view.display_batsman_data(batsmen_data.at(0), SortingParameter::Sixes_And_Fours);
     }
 
     void display_best_strike_rate_with_sixes_and_fours()
     {
-        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, ipl_model.Strike_Rate_With_Sixes_And_Fours);
-        ipl_view.display_batsman_data(batsmen_data.at(0), ipl_model.Strike_Rate_With_Sixes_And_Fours);
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, SortingParameter::Strike_Rate_With_Sixes_And_Fours);
+        ipl_view.display_batsman_data(batsmen_data.at(0), SortingParameter::Strike_Rate_With_Sixes_And_Fours);
     }
 
     void display_best_batting_average_and_strike_rate()
     {
-        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, ipl_model.Batting_Average_And_Strike_Rate);
-        ipl_view.display_batsman_data(batsmen_data.at(0), ipl_model.Batting_Average_And_Strike_Rate);
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, SortingParameter::Batting_Average_And_Strike_Rate);
+        ipl_view.display_batsman_data(batsmen_data.at(0), SortingParameter::Batting_Average_And_Strike_Rate);
     }
 
     void display_best_average_with_most_runs()
     {
-        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, ipl_model.Most_Runs_With_Best_Average);
-        ipl_view.display_batsman_data(batsmen_data.at(0), ipl_model.Most_Runs_With_Best_Average);
+        batsmen_data = ipl_model.sort_batsmen_data(batsmen_data, SortingParameter::Most_Runs_With_Best_Average);
+        ipl_view.display_batsman_data(batsmen_data.at(0), SortingParameter::Most_Runs_With_Best_Average);
     }
 
     void display_best_bowling_average()
     {
-        bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Average);
-        ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Average);
+        bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Average);
+        ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Average);
     }
 
     void display_best_bowling_strike_rate()
     {
-        bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Strike_Rate);
-        ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Strike_Rate);
+        bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Strike_Rate);
+        ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Strike_Rate);
     }
 
     void display_best_bowling_economy()
     {
-        bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Economy);
-        ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Economy);
+        bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Economy);
+        ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Economy);
     }
 
     void best_bowling_strike_rate_with_5w_4w()
     {
-        bowler_data = ipl_model.sort_bowler_data(bowler_data, ipl_model.Bowling_Strike_Rate_5W_4W);
-        ipl_view.display_bowler_data(bowler_data.at(0), ipl_model.Bowling_Strike_Rate_5W_4W);
+        bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Strike_Rate_5W_4W);
+        ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Strike_Rate_5W_4W);
     }
 };

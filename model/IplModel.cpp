@@ -5,6 +5,9 @@
 #include "../libraries/csvFileReader.cpp"
 #include "Batsman.cpp"
 #include "Bowler.cpp"
+#include "../enums/IplEnums.cpp"
+
+using namespace IplEnums;
 
 class IplModel
 {
@@ -15,19 +18,19 @@ class IplModel
     }
 
 public:
-    enum SortingParameter
-    {
-        Batting_Average = 1,
-        Batting_Strike_Rate,
-        Sixes_And_Fours,
-        Strike_Rate_With_Sixes_And_Fours,
-        Batting_Average_And_Strike_Rate,
-        Most_Runs_With_Best_Average,
-        Bowling_Average,
-        Bowling_Strike_Rate,
-        Bowling_Economy,
-        Bowling_Strike_Rate_5W_4W
-    };
+    // enum SortingParameter
+    // {
+    //     Batting_Average = 1,
+    //     Batting_Strike_Rate,
+    //     Sixes_And_Fours,
+    //     Strike_Rate_With_Sixes_And_Fours,
+    //     Batting_Average_And_Strike_Rate,
+    //     Most_Runs_With_Best_Average,
+    //     Bowling_Average,
+    //     Bowling_Strike_Rate,
+    //     Bowling_Economy,
+    //     Bowling_Strike_Rate_5W_4W
+    // };
 
     IplModel() {}
     vector<Batsman> load_batsmen_data(string);
@@ -63,34 +66,34 @@ vector<Batsman> IplModel::sort_batsmen_data(vector<Batsman> batsmen_data, Sortin
 {
     switch (sorting_parameter)
     {
-    case Batting_Average:
+    case SortingParameter::Batting_Average:
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average();
         });
         break;
-    case Batting_Strike_Rate:
+    case SortingParameter::Batting_Strike_Rate:
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return first_batsman.get_batting_stats()->get_strike_rate() > second_batsman.get_batting_stats()->get_strike_rate();
         });
         break;
-    case Sixes_And_Fours:
+    case SortingParameter::Sixes_And_Fours:
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return ((first_batsman.get_batting_stats()->get_fours() + first_batsman.get_batting_stats()->get_sixes()) > (second_batsman.get_batting_stats()->get_fours() + second_batsman.get_batting_stats()->get_sixes()));
         });
         break;
-    case Strike_Rate_With_Sixes_And_Fours:
+    case SortingParameter::Strike_Rate_With_Sixes_And_Fours:
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return first_batsman.get_batting_stats()->get_strike_rate() > second_batsman.get_batting_stats()->get_strike_rate() &&
                    ((first_batsman.get_batting_stats()->get_fours() + first_batsman.get_batting_stats()->get_sixes()) > (second_batsman.get_batting_stats()->get_fours() + second_batsman.get_batting_stats()->get_sixes()));
         });
         break;
-    case Batting_Average_And_Strike_Rate:
+    case SortingParameter::Batting_Average_And_Strike_Rate:
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return ((first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average()) &&
                     (first_batsman.get_batting_stats()->get_strike_rate() > second_batsman.get_batting_stats()->get_strike_rate()));
         });
         break;
-    case Most_Runs_With_Best_Average:
+    case SortingParameter::Most_Runs_With_Best_Average:
         sort(batsmen_data.begin(), batsmen_data.end(), [](Batsman &first_batsman, Batsman &second_batsman) -> bool {
             return ((first_batsman.get_batting_stats()->get_total_runs() > second_batsman.get_batting_stats()->get_total_runs()) &&
                     (first_batsman.get_batting_stats()->get_average() > second_batsman.get_batting_stats()->get_average()));
@@ -126,7 +129,7 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
     vector<Bowler> required_bowler_data;
     switch (sorting_parameter)
     {
-    case Bowling_Average:
+    case SortingParameter::Bowling_Average:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
             return first_bowler.get_bowling_stats()->average < second_bowler.get_bowling_stats()->average;
         });
@@ -135,7 +138,7 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
             if (bowler_data.at(bowler_count).get_bowling_stats()->average != 0)
                 required_bowler_data.push_back(bowler_data.at(bowler_count));
         break;
-    case Bowling_Strike_Rate:
+    case SortingParameter::Bowling_Strike_Rate:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
             return first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;
         });
@@ -144,7 +147,7 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
             if (bowler_data.at(bowler_count).get_bowling_stats()->strike_rate != 0)
                 required_bowler_data.push_back(bowler_data.at(bowler_count));
         break;
-    case Bowling_Economy:
+    case SortingParameter::Bowling_Economy:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
             return first_bowler.get_bowling_stats()->economy < second_bowler.get_bowling_stats()->economy;
         });
@@ -153,7 +156,7 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
             if (bowler_data.at(bowler_count).get_bowling_stats()->economy != 0)
                 required_bowler_data.push_back(bowler_data.at(bowler_count));
         break;
-    case Bowling_Strike_Rate_5W_4W:
+    case SortingParameter::Bowling_Strike_Rate_5W_4W:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
             if (first_bowler.get_bowling_stats()->five_wicket_hauls != 0)
                 return (first_bowler.get_bowling_stats()->five_wicket_hauls > second_bowler.get_bowling_stats()->five_wicket_hauls);
