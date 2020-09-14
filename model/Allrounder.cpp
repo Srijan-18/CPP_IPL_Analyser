@@ -9,4 +9,6 @@ public:
     string name;
     double batting_average;
     double bowling_average;
+    int runs;
+    int wickets;
 };

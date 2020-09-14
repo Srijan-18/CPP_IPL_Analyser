@@ -69,17 +69,19 @@ public:
                 display_best_bowling_economy();
                 break;
             case 10:
-                best_bowling_strike_rate_with_5w_4w();
+                display_best_bowling_strike_rate_with_5w_4w();
                 break;
             case 11:
-                best_bowling_average_with_best_strike_rate();
+                display_best_bowling_average_with_best_strike_rate();
                 break;
             case 12:
-                best_bowling_average_with_most_wickets();
+                display_best_bowling_average_with_most_wickets();
                 break;
             case 13:
-                best_batting_and_bowling_averages();
-                break;    
+                display_best_batting_and_bowling_averages();
+                break;
+            case 14:
+                display_most_runs_and_wickets();        
             default:
                 repeat = false;
             }
@@ -140,27 +142,33 @@ public:
         ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Economy);
     }
 
-    void best_bowling_strike_rate_with_5w_4w()
+    void display_best_bowling_strike_rate_with_5w_4w()
     {
         bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Strike_Rate_5W_4W);
         ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Strike_Rate_5W_4W);
     }
 
-    void best_bowling_average_with_best_strike_rate()
+    void display_best_bowling_average_with_best_strike_rate()
     {
         bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Average_With_Best_Strike_Rate);
         ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Average_With_Best_Strike_Rate);
     }
 
-    void best_bowling_average_with_most_wickets()
+    void display_best_bowling_average_with_most_wickets()
     {
         bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Average_With_Most_Wickets);
         ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Average_With_Most_Wickets);
     }
 
-    void best_batting_and_bowling_averages()
+    void display_best_batting_and_bowling_averages()
     {
         allrounders_data = ipl_model.sort_all_rounder_data(allrounders_data, SortingParameter::Batting_And_Bowling_Averages);
         ipl_view.display_allrounder_data(allrounders_data.at(0), SortingParameter::Batting_And_Bowling_Averages);
+    }
+
+    void display_most_runs_and_wickets()
+    {
+        allrounders_data = ipl_model.sort_all_rounder_data(allrounders_data, SortingParameter::Most_Runs_And_Wickets);
+        ipl_view.display_allrounder_data(allrounders_data.at(0), SortingParameter::Most_Runs_And_Wickets);
     }
 };

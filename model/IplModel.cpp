@@ -199,6 +199,8 @@ vector<Allrounder> IplModel::load_all_rounder_data(vector<Batsman> batsmen, vect
                 allrounder.name = batsmen.at(batsman_count).get_name();
                 allrounder.batting_average = batsmen.at(batsman_count).get_batting_stats()->get_average();
                 allrounder.bowling_average = bowlers.at(bowler_count).get_bowling_stats()->average;
+                allrounder.runs = batsmen.at(batsman_count).get_batting_stats()->get_total_runs();
+                allrounder.wickets = bowlers.at(bowler_count).get_bowling_stats()->wickets;
                 allrounders.push_back(allrounder);
             }
         }
@@ -222,6 +224,14 @@ vector<Allrounder> IplModel::sort_all_rounder_data(vector<Allrounder> all_rounde
             if (all_rounders.at(all_rounder_count).batting_average != 0 && all_rounders.at(all_rounder_count).bowling_average)
                 required_allrounder_data.push_back(all_rounders.at(all_rounder_count));
         }
+        break;
+
+    case Most_Runs_And_Wickets:
+        sort(all_rounders.begin(), all_rounders.end(), [](Allrounder &first_allrounder, Allrounder &second_allrounder) -> bool {
+            return first_allrounder.runs > second_allrounder.runs && first_allrounder.wickets > second_allrounder.wickets;
+        });
+        required_allrounder_data = all_rounders;
     }
+    
     return required_allrounder_data;
 }

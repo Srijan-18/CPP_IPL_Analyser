@@ -34,6 +34,7 @@ int IplView::getChoice()
          << "\n11. Find Bowler With Best Average And Best Strike Rate"
          << "\n12. Find Bowler With Best Average And Most Wickets"
          << "\n13. Find All Rounder With Best Batting And Bowling Averages"
+         << "\n14. find All Rounder With Most Runs And Wickets"
          << "\nAny other to exit."
          << "\n\nYour Choice : ";
 
@@ -130,14 +131,21 @@ void IplView::display_bowler_data(Bowler bowler, SortingParameter sorting_parame
 
 void IplView::display_allrounder_data(Allrounder allrounder, SortingParameter sortingParameter)
 {
-    switch(sortingParameter)
+    switch (sortingParameter)
     {
-        case Batting_And_Bowling_Averages:
-            cout << "\nALLROUNDER WITH BEST BOWLING AND BATTING AVERAGES"
-            << "\nNAME: " << allrounder.name
-            << "\t\tBATTING AVERAGE: " << allrounder.batting_average
-            << "\t\tBOWLING AVERAGE: " << allrounder.bowling_average
-            << endl;
+    case Batting_And_Bowling_Averages:
+        cout << "\nALLROUNDER WITH BEST BOWLING AND BATTING AVERAGES"
+             << "\nNAME: " << allrounder.name
+             << "\t\tBATTING AVERAGE: " << allrounder.batting_average
+             << "\t\tBOWLING AVERAGE: " << allrounder.bowling_average
+             << endl;
+        break;
+    case Most_Runs_And_Wickets:
+        cout << "\nALLROUNDER WITH MOST RUNS AND WICKETS"
+             << "\nNAME: " << allrounder.name
+             << "\t\tRUNS: " << allrounder.runs
+             << "\t\tWICKETS: " << allrounder.wickets
+             << endl;
+        break;
     }
-
 }
