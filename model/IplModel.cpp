@@ -123,28 +123,35 @@ vector<Bowler> IplModel::load_bowler_data(string file_path)
 
 vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingParameter sorting_parameter)
 {
+    vector<Bowler> required_bowler_data;
     switch (sorting_parameter)
     {
     case Bowling_Average:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
-            if (first_bowler.get_bowling_stats()->average != 0 || second_bowler.get_bowling_stats()->average != 0)
-                return false;
             return first_bowler.get_bowling_stats()->average < second_bowler.get_bowling_stats()->average;
         });
+
+        for (int bowler_count = 0; bowler_count < bowler_data.size(); bowler_count++)
+            if (bowler_data.at(bowler_count).get_bowling_stats()->average != 0)
+                required_bowler_data.push_back(bowler_data.at(bowler_count));
         break;
     case Bowling_Strike_Rate:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
-            if (first_bowler.get_bowling_stats()->strike_rate == 0 || second_bowler.get_bowling_stats()->strike_rate == 0)
-                return false;
             return first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;
         });
+
+        for (int bowler_count = 0; bowler_count < bowler_data.size(); bowler_count++)
+            if (bowler_data.at(bowler_count).get_bowling_stats()->strike_rate != 0)
+                required_bowler_data.push_back(bowler_data.at(bowler_count));
         break;
     case Bowling_Economy:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
-            if (first_bowler.get_bowling_stats()->economy == 0 || second_bowler.get_bowling_stats()->economy == 0)
-                return false;
             return first_bowler.get_bowling_stats()->economy < second_bowler.get_bowling_stats()->economy;
         });
+
+        for (int bowler_count = 0; bowler_count < bowler_data.size(); bowler_count++)
+            if (bowler_data.at(bowler_count).get_bowling_stats()->economy != 0)
+                required_bowler_data.push_back(bowler_data.at(bowler_count));
         break;
     case Bowling_Strike_Rate_5W_4W:
         sort(bowler_data.begin(), bowler_data.end(), [](Bowler &first_bowler, Bowler &second_bowler) -> bool {
@@ -156,6 +163,7 @@ vector<Bowler> IplModel::sort_bowler_data(vector<Bowler> bowler_data, SortingPar
                 return false;
             return first_bowler.get_bowling_stats()->strike_rate < second_bowler.get_bowling_stats()->strike_rate;
         });
+        required_bowler_data = bowler_data;
     }
-    return bowler_data;
+    return required_bowler_data;
 }

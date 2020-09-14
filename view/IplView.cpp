@@ -8,9 +8,34 @@ class IplView
 {
 public:
     IplView() {}
+    void display_welcome_message();
+    int getChoice();
     void display_batsman_data(Batsman, IplModel::SortingParameter);
     void display_bowler_data(Bowler, IplModel::SortingParameter);
 };
+
+void IplView::display_welcome_message()
+{
+    cout << "\n\t\t***** WELCOME TO IPL ANALYSER *****\n";
+}
+
+int IplView::getChoice()
+{
+    int choice;
+
+    cout << "\n\t\t##  MAKE INPUT ACCORDING TO CHOICE  ##\n";
+    cout << "\n1. Find Batsman With Top Batting Average\n2. Find Batsman With Top Striking Rate\n3. Find Batsman With Max 6(s) And 4(s)"
+         << "\n4. Find Batsman With Best Strike Rate With Sixes And Fours\n5. Find Batsman With Great Average With Best Strike"
+         << "\n6. Find Batsman With Maximum Runs With Best Averages"
+         << "\n7. Find Bowler With Top Bowling Average\n8. Find Bowler With Top Strike Rate"
+         << "\n9. Find Bowler With Best Economy Rate\n10. Find Bowler With Best Strike Rate With 5W And 4W"
+         << "\nAny other to exit."
+         << "\n\nYour Choice : ";
+
+    cin >> choice;
+    cin.get();
+    return choice;
+}
 
 void IplView::display_batsman_data(Batsman batsman, IplModel::SortingParameter sorting_parameter)
 {
@@ -76,7 +101,7 @@ void IplView::display_bowler_data(Bowler bowler, IplModel::SortingParameter sort
     case IplModel::Bowling_Strike_Rate_5W_4W:
         cout << "\nBOWLER WITH BEST BOWLING STRIKE RATE WITH 5W AND 4W"
              << "\nNAME: " << bowler.get_name()
-             << "\t\tSTRIKE_RATE: " << bowler.get_bowling_stats()->strike_rate 
+             << "\t\tSTRIKE_RATE: " << bowler.get_bowling_stats()->strike_rate
              << "\t\tFIVE WICKET HAULS: " << bowler.get_bowling_stats()->five_wicket_hauls
              << "\t\tFOUR WICKET HAULS: " << bowler.get_bowling_stats()->four_wicket_hauls
              << endl;
