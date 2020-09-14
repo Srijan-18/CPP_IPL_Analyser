@@ -70,6 +70,9 @@ public:
             case 10:
                 best_bowling_strike_rate_with_5w_4w();
                 break;
+            case 11:
+                best_bowling_average_with_best_strike_rate();
+                break;    
             default:
                 repeat = false;
             }
@@ -134,5 +137,10 @@ public:
     {
         bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Strike_Rate_5W_4W);
         ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Strike_Rate_5W_4W);
+    }
+
+    void best_bowling_average_with_best_strike_rate(){
+        bowler_data = ipl_model.sort_bowler_data(bowler_data, SortingParameter::Bowling_Average_With_Best_Strike_Rate);
+        ipl_view.display_bowler_data(bowler_data.at(0), SortingParameter::Bowling_Average_With_Best_Strike_Rate);
     }
 };
